@@ -1,15 +1,16 @@
 package dao;
 
 import entity.Article;
-import hibernate.HibernateUtils;
+import hibernate.HibernateUtil;
 import org.hibernate.Session;
+import spring.SpringContextHolder;
 
 import java.util.List;
 
 public class HibernateMySqlArticleDao implements ArticleDao {
 
     public void save(Article article) {
-        Session s = HibernateUtils.getSessionFactory().openSession();
+        Session s = ((HibernateUtil) SpringContextHolder.getContext().getBean("hib_util")).getSessionFactory().openSession();
         s.beginTransaction();
         s.save(article);
         s.getTransaction().commit();
@@ -17,7 +18,7 @@ public class HibernateMySqlArticleDao implements ArticleDao {
     }
 
     public void delete() {
-        Session s = HibernateUtils.getSessionFactory().openSession();
+        Session s = ((HibernateUtil) SpringContextHolder.getContext().getBean("hib_util")).getSessionFactory().openSession();
         s.beginTransaction();
         List<Article> out = s.createQuery("FROM Article").list();
         for (Article article : out) {

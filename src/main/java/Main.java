@@ -1,4 +1,7 @@
 import dao.HibernateMySqlArticleDao;
+import holders.ArticleHolder;
+import parser.ParseSitePage;
+import spring.SpringContextHolder;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,23 +17,29 @@ public class Main {
         System.out.println("4 - Clear article table");
 
         int pacer = new Scanner(System.in).nextInt();
-        System.out.println("Enter url:");
-        String url = (new Scanner(System.in).nextLine());
         switch (pacer) {
             case 1:
-                new ArticleHolder().saveArticle(ParseSitePage.parseArticlePage(url));
+                System.out.println("Enter url:");
+                String url = (new Scanner(System.in).nextLine());
+                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
+                        .saveArticle(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseArticlePage(url));
                 break;
             case 2:
-                new ArticleHolder().saveArticles(ParseSitePage.parseCategoryPage(url));
+                System.out.println("Enter url:");
+                String url1 = (new Scanner(System.in).nextLine());
+                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
+                        .saveArticles(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseCategoryPage(url1));
                 break;
             case 3:
-                new ArticleHolder().saveArticles(ParseSitePage.parseMainPage(url));
+                System.out.println("Enter url:");
+                String url2 = (new Scanner(System.in).nextLine());
+                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
+                        .saveArticles(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseMainPage(url2));
                 break;
             case 4:
-                new HibernateMySqlArticleDao().delete();
+                ((HibernateMySqlArticleDao) SpringContextHolder.getContext().getBean("articleDao")).delete();
         }
 
-//        new ArticleHolder().saveArticles(ParseSitePage.parseCategoryPage("https://www.nytimes.com/section/opinion"));
 
     }
 }

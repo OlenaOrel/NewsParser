@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <bean id="articleDao" class="dao.HibernateMySqlArticleDao"/>
+
+    <bean id="hib_util" class="hibernate.HibernateUtil"/>
+
+    <bean id="doc" class="holders.DocumentHolder"/>
+
+    <bean id="parse" class="parser.ParseSitePage"/>
+
+    <bean id="art-hold" class="holders.ArticleHolder"/>
+
+
+    <!--<bean id="html" class="service.HtmlServise"/>-->
+    <!--<bean id="html_item" class="service.ItemServise"/>-->
+
+</beans>
