@@ -47,9 +47,7 @@ public class ParseSitePage {
 
         List<Article> out = new LinkedList<Article>();
         for (String url1 : tmp) {
-            for (Article article : parseCategoryPage(url1)) {
-                out.add(article);
-            }
+            out.addAll(parseCategoryPage(url1));
         }
         return out;
     }
@@ -77,7 +75,7 @@ public class ParseSitePage {
         }
         String text = "";
         String date = "";
-        for (Element element : doc.getElementsByAttributeValue("name", "articleBody")) {
+        for(Element element : doc.getElementsByAttributeValue("name", "articleBody")) {
             text = element.text();
         }
 

@@ -40,6 +40,5 @@ public class Main {
                 ((HibernateMySqlArticleDao) SpringContextHolder.getContext().getBean("articleDao")).delete();
         }
 
-
     }
 }

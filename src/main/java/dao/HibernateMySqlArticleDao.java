@@ -17,6 +17,16 @@ public class HibernateMySqlArticleDao implements ArticleDao {
         s.close();
     }
 
+    public void saveAll(List<Article> articles){
+        Session s = ((HibernateUtil) SpringContextHolder.getContext().getBean("hib_util")).getSessionFactory().openSession();
+        s.beginTransaction();
+        for (Article article : articles) {
+            s.save(article);
+        }
+        s.getTransaction().commit();
+        s.close();
+    }
+
     public void delete() {
         Session s = ((HibernateUtil) SpringContextHolder.getContext().getBean("hib_util")).getSessionFactory().openSession();
         s.beginTransaction();
