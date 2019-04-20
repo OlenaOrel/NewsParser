@@ -1,6 +1,5 @@
 package entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,7 +8,6 @@ import javax.persistence.Table;
 @Table(name = "article")
 public class Article {
     @Id
-    @Column(name = "title")
     private String title;
     private String date;
     private String text;

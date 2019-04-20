@@ -8,14 +8,6 @@
 
     <bean id="hib_util" class="hibernate.HibernateUtil"/>
 
-    <bean id="doc" class="holders.DocumentHolder"/>
-
     <bean id="parse" class="parser.ParseSitePage"/>
-
-    <bean id="art-hold" class="holders.ArticleHolder"/>
-
-
-    <!--<bean id="html" class="service.HtmlServise"/>-->
-    <!--<bean id="html_item" class="service.ItemServise"/>-->
 
 </beans>

@@ -1,5 +1,5 @@
+import dao.ArticleDao;
 import dao.HibernateMySqlArticleDao;
-import holders.ArticleHolder;
 import parser.ParseSitePage;
 import spring.SpringContextHolder;
 
@@ -21,24 +21,23 @@ public class Main {
             case 1:
                 System.out.println("Enter url:");
                 String url = (new Scanner(System.in).nextLine());
-                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
-                        .saveArticle(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseArticlePage(url));
+                ((ArticleDao) SpringContextHolder.getContext().getBean("articleDao"))
+                        .save(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).getArticleFromArticlePage(url));
                 break;
             case 2:
                 System.out.println("Enter url:");
                 String url1 = (new Scanner(System.in).nextLine());
-                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
-                        .saveArticles(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseCategoryPage(url1));
+                ((ArticleDao) SpringContextHolder.getContext().getBean("articleDao"))
+                        .saveAll(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).getArticlePageFromCategoryPage(url1));
                 break;
             case 3:
                 System.out.println("Enter url:");
                 String url2 = (new Scanner(System.in).nextLine());
-                ((ArticleHolder) SpringContextHolder.getContext().getBean("art-hold"))
-                        .saveArticles(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).parseMainPage(url2));
+                ((ArticleDao) SpringContextHolder.getContext().getBean("articleDao"))
+                        .saveAll(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).getArticlesFromMainPage(url2));
                 break;
             case 4:
-                ((HibernateMySqlArticleDao) SpringContextHolder.getContext().getBean("articleDao")).delete();
+                ((HibernateMySqlArticleDao) SpringContextHolder.getContext().getBean("hib_util")).delete();
         }
-
     }
 }
