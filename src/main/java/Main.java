@@ -37,7 +37,7 @@ public class Main {
                         .saveAll(((ParseSitePage) SpringContextHolder.getContext().getBean("parse")).getArticlesFromMainPage(url2));
                 break;
             case 4:
-                ((HibernateMySqlArticleDao) SpringContextHolder.getContext().getBean("hib_util")).delete();
+                HibernateMySqlArticleDao.delete();
         }
     }
 }

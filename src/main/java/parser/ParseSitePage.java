@@ -51,12 +51,12 @@ public class ParseSitePage {
         String date = "";
         try {
             Document doc = Jsoup.connect(url).get();
-            title = doc.title();
             for (Element element : doc.getElementsByClass("css-1w5cs23 epjyd6m2")) {
                 date = element.getElementsByAttribute("datetime").text();
             }
-            for (Element element : doc.getElementsByAttributeValue("name", "articleBody")) {
-                text = element.text();
+            for (Element element : doc.getElementsByAttributeValue("id", "story")) {
+                title = element.getElementsByAttributeValue("itemprop", "headline").text();
+                text = element.getElementsByClass("css-53u6y8").text();
             }
         } catch (IOException e) {
             e.printStackTrace();
